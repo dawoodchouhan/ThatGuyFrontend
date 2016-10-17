@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-    <%@taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+      <%@taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+      <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -9,21 +10,20 @@
 <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
 <script src='http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js'></script>
 <script src="js/index.js"></script>
-<title>Registration Page</title>
+<title>Login Page</title>
 
 <style>
-body {
-  
+body { 
 background:url('http://www.publicdomainpictures.net/pictures/130000/nahled/red-side-gradient-background.jpg');
-
-  margin:0px;
+ margin:0px;
+  
    background-repeat:no-repeat;
 
    background-size:cover;
   
 font-family: 'Ubuntu', sans-serif;
 
-}
+ }
 
 h1, h2, h3, h4, h5, h6, a {
 
@@ -32,7 +32,7 @@ padding:0;
 
 }
 
-.register
+.login
  {
  
  margin:0 auto;
@@ -41,7 +41,7 @@ padding:0;
 
 }
 
-.register-header {
+.login-header {
  
  color:#fff;
  
@@ -51,13 +51,13 @@ padding:0;
 
 }
 
-.register-header h1 {
+.login-header h1 {
 
    text-shadow: 0px 5px 15px #000;
 
 }
 
-.register-form {
+.login-form {
  
  border:2px solid #999;
 
@@ -69,7 +69,7 @@ padding:0;
 
 }
 
-.register-form h3
+.login-form h3
  {
  
  text-align:left;
@@ -80,7 +80,7 @@ padding:0;
 
 }
 
-.register-form
+.login-form
  {
 
   box-sizing:border-box;
@@ -95,10 +95,8 @@ padding:0;
 
 }
 
-.register input[type="text"],
-.register input[type="password"],
-
-.register input[type="cpassword"]
+.login input[type="text"],
+.login input[type="password"]
  {
  
  width: 100%;
@@ -121,9 +119,7 @@ padding:0;
 
 }
 
-.register-form input[type="button"],
-.register-form input[type="reset"]
-
+.login-form input[type="button"]
  {
  
  height:30px;
@@ -146,7 +142,7 @@ padding:0;
 
 }
 
-.login
+.sign-up
 {
   color:#f2f2f2;
 
@@ -163,52 +159,50 @@ padding:0;
 
 <body>
 <%@ include file="commonheader.jsp" %>
+<br>${message}
 
 
 
-<div class="register">
+<div class="login">
 
-  <div class="register-header">
+  <div class="login-header">
  
-   <h1>Register Here</h1>
+   <h1>Login</h1>
  
  </div>
   
-<div class="register-form">
-<form:form action="/Register"  method="post" commandName="user" >
+<div class="login-form">
+<c:url var="action" value="/Login"></c:url>
+<form:form action="/Login"  method="post" commandName="user">
 
- <h3>User Name:</h3>
-    
-<form:input type="text" path="name" placeholder="User Name"/><br>
  
-   <h3>E-mail:</h3>
+   <h3>UserID:</h3>
     
-<form:input type="text" path="id" placeholder="E-mail Address"/><br>
-
-   <h3>Mobile:</h3>
-    
-<form:input type="text" path="mobile" placeholder="Mobile Number"/><br>
- 
+<form:input type="text" name="name"  path="name" placeholder="Name"/><br>
  
    <h3>Password:</h3>
  
-   <form:input type="password" path="password"  placeholder="Password" required="true"/>
-    
-  <br>
-  <input type="reset">
+   <form:input type="password" name="password" path="password" placeholder="Password"/>
   
-  <input type="submit" value="submit" class="submit-button"/>
+  <br>
+  
+  <input type="submit" value="Login" class="login-button"/>
  
    <br>
     
-
+<div class="login-button">
+				<a href="Register">Get New Account</a>
+</div>
+    <br>
+    </form:form>
  
- </form:form>  
+   
  
  </div>
 </div>
 
    
+
 
 
 <%@ include file="commonfooter.jsp" %>

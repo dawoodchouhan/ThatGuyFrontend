@@ -47,18 +47,18 @@ public class UserController {
 	@Autowired
 	HttpSession session;
 	
-@RequestMapping("/Login")
-public ModelAndView Login(@RequestParam(value="name")String userID,
+@RequestMapping(value="/Login",method=RequestMethod.POST)
+public ModelAndView Login(@RequestParam(value="name")String name,
 		@RequestParam(value="password")String password,HttpSession session)
 {
 	log.debug("Starting of the method login");
-	log.info("userID is {} password is{}",userID,password);
-	ModelAndView mv=new ModelAndView("Login");
-	user=userDAO.isValidUser(userID,password);
+	log.info("name is {} password is{}",name,password);
+	ModelAndView mv=new ModelAndView("/Home");
+	user=userDAO.isValidUser(name,password);
 	
 	if(user!=null){
 		log.debug("Valid Credentials");
-		user=userDAO.get(userID);
+		user=userDAO.get(name);
 		session.setAttribute("loggedInUser",user.getName());
 		session.setAttribute("loggedInUserID",user.getId());
 		session.setAttribute("user",user);
@@ -73,7 +73,7 @@ public ModelAndView Login(@RequestParam(value="name")String userID,
 			}else{
 				log.debug("logged in as USER");
 				mv.addObject("isAdmin","false");
-				cart=cartDAO.get(userID);
+				cart=cartDAO.get(name);
 				mv.addObject("cart",cart);
 				//Fetching the cart list based on user ID
 				//List<Cart> cartList=cartDAO.list(userID);
@@ -87,10 +87,11 @@ public ModelAndView Login(@RequestParam(value="name")String userID,
 	log.debug("ending of the method login");
 	return mv;
 }
+
 @RequestMapping("/logout")
 public ModelAndView logout(HttpServletRequest request,HttpSession session)
 {
-	ModelAndView mv=new ModelAndView("/home");
+	ModelAndView mv=new ModelAndView("/Home");
 	session.invalidate();
 	session=request.getSession(true);
 	session.setAttribute("category",category);

@@ -47,8 +47,9 @@ padding-left:20 px;
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
       <li><a href="Home" >Home</a></li>
-        <li><a href="Products" >Products</a></li>
+        <li><a href="product" >Products</a></li>
        <li><a href="Login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+      
      <li><a href="Register"><span class="glyphicon glyphicon-user"></span> Register</a></li>
      
         <li><a href="Aboutus" >About us</a></li>
@@ -71,6 +72,8 @@ padding-left:20 px;
             </div>
         </div>
         </form>
+        
+
         
         
         

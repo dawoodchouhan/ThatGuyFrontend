@@ -74,19 +74,19 @@ public class HomeController {
 		ModelAndView mv=new ModelAndView("/Home");
 		return mv;
 	}
-	@RequestMapping("/user/register")
+	/*@RequestMapping("/user/register")
 	public ModelAndView navigateToRegistration()
 	{
-		ModelAndView mv=new ModelAndView("Home");
+		ModelAndView mv=new ModelAndView("/user/register");
 		mv.addObject("isUserClickedRegistration",true);
 		return mv;
-	}
+	}*/
 	
 	
-	@RequestMapping(value="user/register",method=RequestMethod.POST)
+	@RequestMapping(value="/Register",method=RequestMethod.POST)
 	public ModelAndView registerUser(@ModelAttribute User user) {
 		//Before adding user check whether the user exists
-		ModelAndView mv=new ModelAndView("/home");
+		ModelAndView mv=new ModelAndView("/Home");
 		if(userDAO.get(user.getId())==null){
 			userDAO.saveOrUpdate(user);
 		}else{
@@ -104,13 +104,13 @@ public class HomeController {
 		return mv;
 	}
 	
-	//@RequestMapping("/loginHere")
-	//public ModelAndView loginHere(){
-	//	ModelAndView mv=new ModelAndView("/home");
-	//	mv.addObject("user",user);
-		//mv.addObject("isUserClickedLoginHere","true");
-		//return mv;
-	//}
+	@RequestMapping("/Login")
+	public ModelAndView Login(){
+		ModelAndView mv=new ModelAndView("/Login");
+		mv.addObject("user",user);
+		mv.addObject("isUserClickedLoginHere","true");
+		return mv;
+	}
 	
 	@RequestMapping("/Aboutus")
 	public ModelAndView Aboutus(){
